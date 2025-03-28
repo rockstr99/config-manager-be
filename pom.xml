@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.11-SNAPSHOT</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.rockstr99</groupId>
+	<artifactId>config-manager-be</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>config-manager-be</name>
+	<description>Demo project for Spring Boot</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals><goal>add-source</goal></goals>
+						<configuration>
+							<sources>
+								<source>src/contract/main/java</source>
+								<source>src/contract/main/resources</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+	<profiles>
+		<profile>
+			<id>generate</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.openapitools</groupId>
+						<artifactId>openapi-generator-maven-plugin</artifactId>
+						<version>5.4.0</version> <!-- Use the latest version -->
+						<executions>
+							<execution>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+								<configuration>
+									<inputSpec>${project.basedir}/src/main/resources/static/getLinkedInProfile.yaml</inputSpec>
+									<addCompileSourceRoot>false</addCompileSourceRoot>
+									<skipOverwrite>false</skipOverwrite>
+									<generatorName>spring</generatorName>
+									<apiPackage>com.rockstr99.LinkedInScrapper.contract.api.v1</apiPackage>
+									<modelPackage>com.rockstr99.LinkedInScrapper.contract.model.v1</modelPackage>
+									<packageName>com.rockstr99.LinkedInScrapper</packageName>
+									<generateApiDocumentation>false</generateApiDocumentation>
+									<generateModelDocumentation>false</generateModelDocumentation>
+									<output>${project.basedir}</output>
+									<generateSupportingFiles>true</generateSupportingFiles>
+									<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+									<withXml>false</withXml>
+									<configOptions>
+										<sourceFolder>src/contract/main/java/</sourceFolder>
+										<dateLibrary>java8</dateLibrary>
+										<interfaceOnly>true</interfaceOnly>
+										<useBeanValidation>true</useBeanValidation>
+										<documentationProvider>none</documentationProvider>
+										<annotationLibrary>swagger2</annotationLibrary>
+										<openApiNullable>false</openApiNullable>
+									</configOptions>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

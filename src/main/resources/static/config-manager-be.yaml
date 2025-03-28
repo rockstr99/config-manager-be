@@ -1,0 +1,14 @@
+openapi: 3.0.3
+info:
+  title: Config Manager BE
+  description: Create and Fetch configurations
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: arpit150100@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/config-manager-be/api
+    description: Local Server
+tags:
+  - name: ConfigManager
+    description: CRUD configs
