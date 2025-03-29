@@ -2,3 +2,4 @@ src/contract/main/java/com/rockstr99/config_manager_be/contract/api/v1/ApiUtil.j
 src/contract/main/java/com/rockstr99/config_manager_be/contract/api/v1/RuleApi.java
 src/contract/main/java/com/rockstr99/config_manager_be/contract/model/v1/CreateRuleRequest.java
 src/contract/main/java/com/rockstr99/config_manager_be/contract/model/v1/CreateRuleResponse.java
+src/contract/main/java/com/rockstr99/config_manager_be/contract/model/v1/GetRuleResponse.java

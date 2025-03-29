@@ -18,7 +18,7 @@ paths:
       tags:
         - Rule
       summary: Create a new Rule
-      operationId: rule
+      operationId: CreateRule
       requestBody:
         description: rule details
         content:
@@ -32,6 +32,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateRuleResponse'
+    get:
+      tags:
+        - Rule
+      summary: Fetch a rule
+      operationId: GetRule
+      parameters:
+        - in: query
+          name: ruleName
+          schema:
+            type: string
+          description: Rule Name for filter
+      responses:
+        default:
+          description: successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRuleResponse'
 components:
   schemas:
     CreateRuleRequest:
@@ -44,6 +62,18 @@ components:
           type: string
           example: swagger example
     CreateRuleResponse:
+      type: object
+      properties:
+        id:
+          type: long
+          example: 10001
+        ruleName:
+          type: string
+          example: generateJSON
+        swagger:
+          type: string
+          example: swagger example
+    GetRuleResponse:
       type: object
       properties:
         id:

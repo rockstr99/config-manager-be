@@ -7,6 +7,7 @@ package com.rockstr99.config_manager_be.contract.api.v1;
 
 import com.rockstr99.config_manager_be.contract.model.v1.CreateRuleRequest;
 import com.rockstr99.config_manager_be.contract.model.v1.CreateRuleResponse;
+import com.rockstr99.config_manager_be.contract.model.v1.GetRuleResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -30,7 +31,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-03-30T00:07:26.605778500+05:30[Asia/Calcutta]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-03-30T00:58:12.034823200+05:30[Asia/Calcutta]")
 @Validated
 @Tag(name = "rule", description = "the rule API")
 public interface RuleApi {
@@ -46,7 +47,7 @@ public interface RuleApi {
      * @return successful response (status code 200)
      */
     @Operation(
-        operationId = "rule",
+        operationId = "createRule",
         summary = "Create a new Rule",
         tags = { "Rule" },
         responses = {
@@ -59,8 +60,44 @@ public interface RuleApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<CreateRuleResponse> rule(
+    default ResponseEntity<CreateRuleResponse> createRule(
         @Parameter(name = "CreateRuleRequest", description = "rule details", schema = @Schema(description = "")) @Valid @RequestBody(required = false) CreateRuleRequest createRuleRequest
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"ruleName\" : \"generateJSON\", \"id\" : 10001, \"swagger\" : \"swagger example\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /rule : Fetch a rule
+     *
+     * @param ruleName Rule Name for filter (optional)
+     * @return successful response (status code 200)
+     */
+    @Operation(
+        operationId = "getRule",
+        summary = "Fetch a rule",
+        tags = { "Rule" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "successful response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  GetRuleResponse.class)))
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/rule",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<GetRuleResponse> getRule(
+        @Parameter(name = "ruleName", description = "Rule Name for filter", schema = @Schema(description = "")) @Valid @RequestParam(value = "ruleName", required = false) String ruleName
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {

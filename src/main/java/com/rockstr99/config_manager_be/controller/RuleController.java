@@ -3,15 +3,18 @@ package com.rockstr99.config_manager_be.controller;
 import com.rockstr99.config_manager_be.contract.api.v1.RuleApi;
 import com.rockstr99.config_manager_be.contract.model.v1.CreateRuleRequest;
 import com.rockstr99.config_manager_be.contract.model.v1.CreateRuleResponse;
+import com.rockstr99.config_manager_be.contract.model.v1.GetRuleResponse;
 import com.rockstr99.config_manager_be.model.Rule;
 import com.rockstr99.config_manager_be.service.RuleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.function.Function;
 
+@RestController
 public class RuleController implements RuleApi {
 
     @Autowired
@@ -23,7 +26,7 @@ public class RuleController implements RuleApi {
     });
 
     @Override
-    public ResponseEntity<CreateRuleResponse> rule(CreateRuleRequest createRuleRequest) {
+    public ResponseEntity<CreateRuleResponse> createRule(CreateRuleRequest createRuleRequest) {
         Rule rule = new Rule();
         try {
             BeanUtils.copyProperties(createRuleRequest, rule);
@@ -37,4 +40,17 @@ public class RuleController implements RuleApi {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Override
+    public ResponseEntity<GetRuleResponse> getRule(String ruleName) {
+        Rule rule =ruleService.getRule(ruleName).orElse(null);
+        if(rule == null)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        GetRuleResponse ruleResponse = new GetRuleResponse();
+        BeanUtils.copyProperties(rule, ruleResponse);
+        return new ResponseEntity<>(ruleResponse, HttpStatus.FOUND);
+    }
+
 }
