@@ -1,3 +1,7 @@
+server:
+  servlet:
+    context-path: /config-manager-be/api
+
 spring:
   application:
     name: config-manager-be

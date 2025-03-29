@@ -44,7 +44,27 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.8.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -108,13 +128,13 @@
 									<goal>generate</goal>
 								</goals>
 								<configuration>
-									<inputSpec>${project.basedir}/src/main/resources/static/getLinkedInProfile.yaml</inputSpec>
+									<inputSpec>${project.basedir}/src/main/resources/static/rule-manager-be.yaml</inputSpec>
 									<addCompileSourceRoot>false</addCompileSourceRoot>
 									<skipOverwrite>false</skipOverwrite>
 									<generatorName>spring</generatorName>
-									<apiPackage>com.rockstr99.LinkedInScrapper.contract.api.v1</apiPackage>
-									<modelPackage>com.rockstr99.LinkedInScrapper.contract.model.v1</modelPackage>
-									<packageName>com.rockstr99.LinkedInScrapper</packageName>
+									<apiPackage>com.rockstr99.config_manager_be.contract.api.v1</apiPackage>
+									<modelPackage>com.rockstr99.config_manager_be.contract.model.v1</modelPackage>
+									<packageName>com.rockstr99.config_manager_be</packageName>
 									<generateApiDocumentation>false</generateApiDocumentation>
 									<generateModelDocumentation>false</generateModelDocumentation>
 									<output>${project.basedir}</output>

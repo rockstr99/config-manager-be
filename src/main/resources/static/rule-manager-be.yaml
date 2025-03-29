@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: Config Manager BE
+  description: Create and Fetch configurations
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: arpit150100@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/config-manager-be/api
+    description: Local Server
+tags:
+  - name: Rule
+    description: CRUD Rule
+paths:
+  /rule:
+    post:
+      tags:
+        - Rule
+      summary: Create a new Rule
+      operationId: rule
+      requestBody:
+        description: rule details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRuleRequest'
+      responses:
+        default:
+          description: successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRuleResponse'
+components:
+  schemas:
+    CreateRuleRequest:
+      type: object
+      properties:
+        ruleName:
+          type: string
+          example: generateJSON
+        swagger:
+          type: string
+          example: swagger example
+    CreateRuleResponse:
+      type: object
+      properties:
+        id:
+          type: long
+          example: 10001
+        ruleName:
+          type: string
+          example: generateJSON
+        swagger:
+          type: string
+          example: swagger example
